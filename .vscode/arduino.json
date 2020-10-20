@@ -1,0 +1,6 @@
+{
+    "board": "arduino:avr:uno",
+    "port": "COM3",
+    "sketch": "queueStructures_RTOS\\queueStructures_RTOS.ino",
+    "programmer": "AVRISP mkII"
+}
