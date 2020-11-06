@@ -9,9 +9,9 @@ EventGroupHandle_t xEventGroup;
 
 const TickType_t xDelay500ms = pdMS_TO_TICKS(500);
 
-#define TASK1_BIT (1UL << OUL)
+#define TASK1_BIT (1UL << 0UL)
 #define TASK2_BIT (1UL << 1UL)
-#define TASk3_BIT (1UL << 2UL)
+#define TASK3_BIT (1UL << 2UL)
 
 void setup(){
   Serial.begin(9600);
@@ -48,10 +48,10 @@ void xTask3(void *pvParameters){
   }
 }
 void OutputTask(void *pvParameters){
-    const EventBits_t xBitsToWaitFor = (TASK1_BIT | TASK2_BIT | TASk3_BIT );
-    EventsBits_t xEventGroupValue;
+    const EventBits_t xBitsToWaitFor = (TASK1_BIT | TASK2_BIT | TASK3_BIT );
+    EventBits_t xEventGroupValue;
   while(1){
-    xEventGroupValue = xEventGroupWaitBits(xEventGroup, xBitsToWaitFor, pdTRUE);
+    xEventGroupValue = xEventGroupWaitBits(xEventGroup, xBitsToWaitFor, pdTRUE, pdTRUE, portMAX_DELAY);
     if (xEventGroupValue & TASK1_BIT != 0){
       digitalWrite(RED, digitalRead(RED)^1);
     }
